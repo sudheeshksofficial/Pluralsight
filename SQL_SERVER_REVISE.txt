@@ -1,10 +1,11 @@
 DIFFERENCE BTW PRIMARY KEY AND UNIQUE
-Primary Key
+---------------------Primary Key--------------------------------------------
 ensure uniqueness and identifier for records
 Cannot have null
 One table one primary key
 Creating index automatically
-Unique
+
+-------------------------Unique--------------------------------------------------------
 only unique no row identifier
 null allowed
 multiple unique columns allowed
