@@ -1,0 +1,61 @@
+CREATE DATABASE COGTRY;
+
+USE COGTRY;
+
+-------------------CREATE STATEMENT ------------------------
+
+CREATE TABLE CATEGORIES (CategoryId  INT PRIMARY KEY IDENTITY(1,1),
+CategoryName  NVARCHAR(50)NOT NULL);
+
+CREATE TABLE PRODUCTS (ProductId  INT PRIMARY KEY IDENTITY(1,1),
+ProductName  NVARCHAR(100) NOT NULL,
+Price  DECIMAL(10,2) NOT NULL,
+CategoryId  INT FOREIGN KEY REFERENCES CATEGORIES(CategoryId));
+
+
+CREATE TABLE CUSTOMERS(CustomerId  INT PRIMARY KEY IDENTITY(1,1),
+FullName  NVARCHAR(50) NOT NULL,
+Email  NVARCHAR(50) NOT NULL UNIQUE,
+City  NVARCHAR(50));
+
+CREATE TABLE ORDERS(OrderId  INT PRIMARY KEY IDENTITY(1,1),
+CustomerId  INT NOT NULL,
+FOREIGN KEY(CustomerId) REFERENCES CUSTOMERS(CustomerId),
+OrderDate  DATETIME DEFAULT GETDATE());
+
+CREATE TABLE ORDERITEMS(OrderItemId  INT PRIMARY KEY IDENTITY(1,1),
+OrderId  INT,
+FOREIGN KEY(OrderId) REFERENCES ORDERS(OrderId),
+ProductId  INT,
+FOREIGN KEY(ProductId ) REFERENCES PRODUCTS(ProductId),
+QUANTITY INT);
+
+------------INSERT STATEMENTS -------------------------------------
+
+-- Insert Categories
+INSERT INTO Categories (CategoryName) VALUES
+('Electronics'), ('Books'), ('Clothing');
+
+-- Insert Products
+INSERT INTO Products (ProductName, Price, CategoryId) VALUES
+('Laptop', 80000, 1),
+('Smartphone', 50000, 1),
+('Novel', 300, 2),
+('T-Shirt', 500, 3);
+
+-- Insert Customers
+INSERT INTO Customers (FullName, Email, City) VALUES
+('John Doe', 'john@example.com', 'Chennai'),
+('Jane Smith', 'jane@example.com', 'Delhi');
+
+-- Insert Orders
+INSERT INTO Orders (CustomerId) VALUES
+(1), (2);
+
+-- Insert Order Items
+INSERT INTO OrderItems (OrderId, ProductId, Quantity) VALUES
+(1, 1, 1),
+(1, 3, 2),
+(2, 4, 3);
+
+--------------------------------------------------
