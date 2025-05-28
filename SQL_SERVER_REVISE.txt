@@ -11,4 +11,25 @@ null allowed
 multiple unique columns allowed
 index wont create automatically
 
+DEFAULT KEY
+IF KEYWORD DEFAULT SET THEN DEFAULT VALUE WILL BE ASSIGNED IF NO VALUES MENTIONED IN INSERT STATEMENT MEANS(OrderDate  DATETIME DEFAULT GETDATE())
+
+Joins - Used to retrieve data from multiple tables based on related columns.
+inner join - matching records for both tables
+left/right join - matching record for left or right side give null rocord for the unmatched cell
+Full join - combination of both left and right side join and all unmatched records can be find out by this method as it gives null value
+selft join  - when need to join within a table values
+
+index - Indexes are used to speed up search and queries.
+
+
+| Index Type | Best Used For | Example Usage | 
+| Clustered Index | Sorting & range queries | Searching records by ID | 
+| Non-Clustered Index | Fast lookups & searching | Searching records by Name or Department | 
+| Unique Index | Prevent duplicates | Ensure unique emails | 
+| Filtered Index | Improve performance on common queries | Index only active users | 
+| Full-Text Index | Searching large text fields | Finding words in product descriptions | 
+
+
+
 

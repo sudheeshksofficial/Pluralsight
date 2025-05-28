@@ -59,3 +59,17 @@ INSERT INTO OrderItems (OrderId, ProductId, Quantity) VALUES
 (2, 4, 3);
 
 --------------------------------------------------
+JOIN - Default join is inner join
+
+select cof.FullName,pp.ProductName from PRODUCTS pp
+join CATEGORIES cc on pp.CategoryId = cc.CategoryId
+inner join ORDERITEMS oo on oo.ProductId = pp.ProductId
+inner join ORDERS os on os.OrderId = oo.OrderId
+inner join CUSTOMERS cof on cof.CustomerId = os.CustomerId;
+
+
+SELECT o.OrderId, c.FullName, p.ProductName, oi.Quantity
+FROM Orders o
+JOIN Customers c ON o.CustomerId = c.CustomerId
+JOIN OrderItems oi ON o.OrderId = oi.OrderId
+JOIN Products p ON oi.ProductId = p.ProductId  where c.FullName = 'John Doe';
