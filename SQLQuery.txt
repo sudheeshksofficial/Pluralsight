@@ -73,3 +73,15 @@ FROM Orders o
 JOIN Customers c ON o.CustomerId = c.CustomerId
 JOIN OrderItems oi ON o.OrderId = oi.OrderId
 JOIN Products p ON oi.ProductId = p.ProductId  where c.FullName = 'John Doe';
+
+
+create nonclustered index IX_mail on DAY2_SAMPLE(EMAIL)
+
+Create nonclustered index IX_NAME on DAY2_SAMPLE(Name)
+
+SET STATISTICS IO ON;
+SET STATISTICS TIME ON;
+
+select * from DAY2_SAMPLE where EMAIL like '%91%';
+
+DROP INDEX IX_mail ON DAY2_SAMPLE;
