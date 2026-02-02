@@ -1,0 +1,121 @@
+Questpond C# course
+
+1. .Net framework - upto framework version 4.8 -windows specific
+2. .Net Core - from version 3.1 - cross platform
+
+
+commandline
+
+dotnet new console
+dotnet build
+dotnet run
+
+when download dotnet it stored on C:\Program Files\dotnet\sdk
+inside sdk folders has all set of libraries of that framework supports.
+
+To use this libraries we need programming language
+
+program/bin/debug/.netversion/machine_level_code
+bin and obj folders created once we build the application
+
+-------------------------------------------------------------------------
+
+if multiple projects needs to start first like front end one project backend another one both are on one sln then on project-properties-multi startup projects
+use arrow key to order which one to start first
+
+if need to use another class logic then add reference it into project dependency and using keyword can used to import on current code
+
+if common login needs to be shared across the application we may able to use dll and add reference to the project you need to use the reference.
+
+
+= notes, drafts, and calculations while writing a book
+
+bin = the printed book
+
+
+
+What actually happens step-by-step
+
+You press Build
+
+Compiler:
+
+Reads your .cs files
+
+Uses obj to store intermediate results
+
+Resolves NuGet packages (stored in obj)
+
+Final .exe / .dll is written to bin
+
+App runs only using files in bin
+
+You can even:
+
+Delete obj
+
+Run the app from bin
+→ it will work perfectly
+
+
+--------------------------------------------------------------------------
+
+c# supports multi language support
+means one soln different language projects c#,F#,vb.net
+
+all will convert to IL code here is the role of CTS and CLS
+
+CTS helping all the programs datatypes to convert into common type
+regardless how we mentioned on each programming language on each projects
+
+
+CLS is a part of CTS and its just checking programming language rules and indicate if any rules are getting violated why defining datatypes. 
+
+
+------------------------------------------------------------------------------
+exercise 2
+
+How does a computer store data?
+👉 All data is stored as binary (0s and 1s), grouped into bytes.
+
+Byte data type & size
+👉 byte is 1 byte (8 bits) and stores values from 0 to 255.
+
+Char data type & size
+👉 char is 2 bytes and stores a Unicode (UTF-16) character.
+
+Why is char bigger than byte?
+👉 Because char supports Unicode characters, which require 16 bits.
+
+Char vs String
+👉 char stores a single character, while string stores a sequence of characters and is immutable.
+
+Signed vs Unsigned
+👉 Signed types support negative values, unsigned types store only positive values with a larger range.
+
+Short, Int, Long
+👉 short is 2 bytes, int is 4 bytes, and long is 8 bytes.
+
+Relation to Int16, Int32, Int64
+👉 short, int, and long are aliases for Int16, Int32, and Int64.
+
+Float, Double, Decimal sizes
+👉 float is 4 bytes, double is 8 bytes, and decimal is 16 bytes.
+
+Float vs Double vs Decimal
+👉 Use float/double for performance and scientific calculations, decimal for financial accuracy.
+
+How does casting affect performance?
+👉 Casting adds extra CPU work and can reduce performance, especially inside loops.
+
+-----------------------------------------------
+
+
+Class : set of variables,functions and methods used as blue print for creating object
+function -takes input and return value
+methods - not return anything has return type void
+Object- to make class by creating instance. Its a usable version of class
+new keyword required
+
+
+
