@@ -140,6 +140,12 @@ glist.add(124);
 Thread used to run multiple functios parallely
 but to avoid thread affinity and cpu utilization taks is added
 
+If you didn’t use Thread or Task.Run, no new thread was created.
+A thread is a physical execution unit managed by the OS, while a task is a logical unit of work managed by .NET.
+Threads are heavyweight and created explicitly, whereas tasks are lightweight, scheduled by the Task Parallel Library, and usually run on thread-pool threads.
+Tasks improve scalability and abstraction, while threads give low-level control.
+
+
 
 
 
