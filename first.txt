@@ -117,5 +117,28 @@ methods - not return anything has return type void
 Object- to make class by creating instance. Its a usable version of class
 new keyword required
 
+value - stack
+reference - heap
+
+
+structure is composite type and value type
+used to avoid hanging variable
+means memory value or pointer value is different
+
+Arrays
+fixed size,datatype is fixed, fast performance due to this
+Int[] integeraray = new Int[5];
+integeraray[0] = 12;
+Arraylist - System.Collection
+no fixed size,any datatype is possible,But all datatypes stored as object type means reference type so boxing and unboxing causes system slow
+ArrayList alist = new ArrayList();
+alist.add(10);
+Generic list - 
+List<int> glist = new List<int>();
+
+
+
+
+
 
 
