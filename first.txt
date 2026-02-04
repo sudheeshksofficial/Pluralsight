@@ -135,6 +135,10 @@ ArrayList alist = new ArrayList();
 alist.add(10);
 Generic list - 
 List<int> glist = new List<int>();
+glist.add(124);
+
+Thread used to run multiple functios parallely
+but to avoid thread affinity and cpu utilization taks is added
 
 
 
