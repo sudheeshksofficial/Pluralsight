@@ -146,8 +146,16 @@ Threads are heavyweight and created explicitly, whereas tasks are lightweight, s
 Tasks improve scalability and abstraction, while threads give low-level control.
 
 
+A stack trace shows the call stack of methods at the moment an exception occurs, helping identify where and how the error happened.
 
+System.NullReferenceException
+ at OrderService.ProcessOrder()  // line 42
+ at OrderController.Create()
+ at Program.Main()
+Read it bottom → top
+(Main → Controller → Service → crash)
 
+Client secrets and passwords are stored in secure vaults like Azure Key Vault, while client IDs and non-sensitive configuration are stored in app configuration or environment variables. Connection strings containing secrets are also stored in vaults.
 
 
 
