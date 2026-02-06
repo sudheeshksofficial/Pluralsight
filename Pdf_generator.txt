@@ -1,0 +1,87 @@
+dotnet add package QuestPDF
+
+public class Invoice
+{
+    public int InvoiceId { get; set; }
+    public string CustomerName { get; set; }
+    public decimal Amount { get; set; }
+    public DateTime Date { get; set; }
+}
+
+using Microsoft.AspNetCore.Mvc;
+using QuestPDF.Fluent;
+using QuestPDF.Helpers;
+using QuestPDF.Infrastructure;
+using System.IO;
+
+namespace CityInfo.API.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class InvoiceController : ControllerBase
+    {
+        [HttpGet("{invoiceId}")]
+        public IActionResult GetInvoicePdf(int invoiceId)
+        {
+            // Normally, you would fetch invoice from DB
+            var invoice = new Invoice
+            {
+                InvoiceId = invoiceId,
+                CustomerName = "Alice",
+                Amount = 1200.50m,
+                Date = DateTime.UtcNow
+            };
+
+            // Generate PDF as byte array
+            byte[] pdfBytes;
+            using (var ms = new MemoryStream())
+            {
+                Document.Create(container =>
+                {
+                    container.Page(page =>
+                    {
+                        page.Margin(50);
+
+                        page.Header()
+                            .Text($"Invoice #{invoice.InvoiceId}")
+                            .FontSize(20)
+                            .Bold()
+                            .AlignCenter();
+
+                        page.Content()
+                            .Column(col =>
+                            {
+                                col.Item().Text($"Customer Name: {invoice.CustomerName}");
+                                col.Item().Text($"Amount: ${invoice.Amount}");
+                                col.Item().Text($"Date: {invoice.Date:yyyy-MM-dd}");
+                            });
+
+                        page.Footer()
+                            .AlignCenter()
+                            .Text(x => x.Span("Thank you for your business!"));
+                    });
+                })
+                .GeneratePdf(ms);
+
+                pdfBytes = ms.ToArray();
+            }
+
+            // Return as PDF file
+            return File(pdfBytes, "application/pdf", $"Invoice_{invoice.InvoiceId}.pdf");
+        }
+    }
+}
+
+
+
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Add controllers
+builder.Services.AddControllers();
+
+var app = builder.Build();
+
+app.MapControllers();
+
+app.Run();

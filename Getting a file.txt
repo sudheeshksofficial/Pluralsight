@@ -1,0 +1,51 @@
+Getting a file
+
+ builder.Services.AddSingleton<FileExtensionContentTypeProvider>();
+
+//for understand the supported file type and return the file
+
+
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.StaticFiles;
+using Microsoft.Extensions.FileProviders;
+
+namespace CityInfo.API.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class FilesController : ControllerBase
+    {
+        private readonly FileExtensionContentTypeProvider _extensionContentTypeProvider;
+
+        public FilesController(FileExtensionContentTypeProvider fileExtensionContentTypeProvider)
+        {
+            _extensionContentTypeProvider = fileExtensionContentTypeProvider ??
+             throw new System.ArgumentNullException(nameof(fileExtensionContentTypeProvider));
+        }
+
+        [HttpGet("{fileid}")]
+        public ActionResult getFile(int fileid)
+        {
+
+            //prop_tax_kerala_receipt_2026 need to store in proj file storage and file property need to update as copy
+            var pathtothefile = "prop_tax_kerala_receipt_2026.pdf";
+
+
+
+            if (!System.IO.File.Exists(pathtothefile))
+            {
+                return NotFound();
+            }
+
+            if (!_extensionContentTypeProvider.TryGetContentType(pathtothefile,out var contentType))
+            {
+                contentType = "application/octet-stream";
+            }
+
+            var bytes = System.IO.File.ReadAllBytes(pathtothefile);
+            return File(bytes,contentType,Path.GetFileName(pathtothefile));
+        }
+    }
+}
+
