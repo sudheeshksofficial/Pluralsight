@@ -158,5 +158,27 @@ Read it bottom → top
 Client secrets and passwords are stored in secure vaults like Azure Key Vault, while client IDs and non-sensitive configuration are stored in app configuration or environment variables. Connection strings containing secrets are also stored in vaults.
 
 
+error codes
+
+200 - successful -data returned/user logged in
+201 - created resource - user registration successful / new order created
+400 - client send invalid data/model validation fails - required field is missing/invalid email format
+401 - user not authenticated/token is missing or expired - calling secured api without jwt token / token expired after system timeout
+403 - forbidden - user not authorized to access the link like admin access not there means
+404 - Resource doesn't exist - id not found/wrong api url
+
+handled by frontend above error coded
+
+backend error codes
+500 - internal server error  - null reference / unhandled exception in business logic, Db connection string is wrong
+501 - api end point exist but not implemented - feature not deployed
+502 - bad gateway - payment gateway return bad response or miroservices communication failed
+503 - Service unavailable - server up but cannot handle request due to server overloaded
+504 - gateway timeout - slow database query,third party api timeout
+505 - http version not supported - old browser
+
+
+
+
 
 
