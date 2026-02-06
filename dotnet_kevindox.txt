@@ -63,6 +63,67 @@ app.MapControllers(); ---> map to controller
 
 middlewares - software components that are assembled into an application pipeline to handle http requests and responses
 
+--------------------------------------------------------------------------------------------------------------------------------------
+
+Routing
+2 types  - conventional routing,attribute based routing
+
+conventional
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+url ----/products/details/5
+
+
+
+attribute based routing
+
+
+modern approach - app.MapControllers(); --> Implements Iendpoint interface
+old approach - app.useRouting()
+app.useEndPoint(
+app.MapControllers(); 
+);
+
+inside controller -    [Route("api/[controller]")] - class level
+[HttpGet]
+
+
+-------------------------------------------------------------------------
+
+Getting data from child
+
+public ActionResult<PointsOfInterest> getPointofinterestById (int cityid,int pointid)
+{
+    PointsOfInterest value = CitiesDataStore.Cityitsprop.cities
+        .FirstOrDefault (x => x.Id == cityid).pointsOfInterests.FirstOrDefault(x=> x.Id == pointid);
+
+    if (value == null)
+    {
+        return NotFound();
+    }
+
+    return Ok(value);
+}
+
+------------------------------------------------------------------------------------------
+
+Data Binding Attribute
+[FromBody]-
+[FromForm]
+[FromHeader]-
+[FromQuery]-
+[FromRoute]-
+[FromServices]
+[AsParameters]
+
+----------------------------------------------------------------------------------
+
+
+
+
 
 
 
