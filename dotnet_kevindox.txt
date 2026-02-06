@@ -1,0 +1,71 @@
+Fundamental
+Deep Dive
+Asynchronous course
+Minimal apis
+
+
+-----------------------------------------------------------
+
+Folders : 
+
+Frameworks : 
+contains asp.net core share frameworks
+have all asp.net core packages that installed while asp.net installed on system
+ - packages related to hosting authentication and mvc app on 
+.AspNetcore.app package
+
+-NetCore.App
+assembly that related to .net core app to run the .net core application
+like System.Data,System.IO
+
+Analyzers : 
+analyse the code while developing
+even we can able to create it by our own
+
+Properties:
+LaunchSettings.Json - Running app
+Profile http,https used means while launching krestal web server is used to launch the application
+its a built in cross platform web server
+
+or IISExpress it has its webserver but not recommend
+
+applicationurl : https://localhost:7050 has port details where application launched
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+CityInfo.API.http - file is just for testing
+
+appsettings.json connection string store
+
+----------------------------------------------------------------------------------------------------
+
+
+WebApplication.CreateBuilder method is used for creating web application
+
+program.cs
+Services collecton is a build in dependency container used for including services while configure application
+by injecting we can use it anywhere in our applicaton
+
+builder.Services.AddControllers();
+register services required to create api 
+and other services are added like swaggerGen()
+
+-----------------------------------------------------------------------------------------------------------------
+here WebApplication object implements interface iApplicationbuider this interface implements mechanism to configure request pipeline
+var app = builder.Build(); afer registering services on the dependency container application get build
+
+by using this we can configure how the application need to respond for individual http request - component handles these are called middleware
+
+
+app.UseHttpsRedirection(); ----> turns http to https
+app.UseAuthorization(); -----> authorization checks to https
+app.MapControllers(); ---> map to controller
+
+middlewares - software components that are assembled into an application pipeline to handle http requests and responses
+
+
+
+
+
+
+
